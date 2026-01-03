@@ -1,0 +1,50 @@
+---
+const products = [
+  {
+    name: "Tuscan Sea Salt",
+    slug: "tuscan-salt",
+    price: "$12",
+    origin: "Tuscany, Italy",
+    image: "/images/products/tuscan-salt.jpg",
+    storySlug: "/stories/tuscany",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <title>Shop</title>
+    <meta name="description" content="Small-batch souvenirs and pantry items discovered during our travels." />
+  </head>
+  <body style="font-family: system-ui; max-width: 960px; margin: 40px auto; padding: 0 16px;">
+    <header style="display:flex; justify-content:space-between; align-items:center;">
+      <h1>Shop</h1>
+      <nav style="display:flex; gap:12px;">
+        <a href="/">Home</a>
+        <a href="/blog">Stories</a>
+        <a href="/shop">Shop</a>
+      </nav>
+    </header>
+
+    <p style="color:#444;">
+      Pantry-style souvenirs connected to our travel stories. Small inventory, curated items.
+    </p>
+
+    <section style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:16px; margin-top:24px;">
+      {products.map((p) => (
+        <article style="border:1px solid #eee; border-radius:16px; padding:16px;">
+          <img src={p.image} alt={p.name} style="width:100%; border-radius:12px; aspect-ratio: 4/3; object-fit: cover;" />
+          <h2 style="margin:12px 0 4px 0;">
+            <a href={`/shop/${p.slug}`} style="text-decoration:none;">{p.name}</a>
+          </h2>
+          <div style="color:#444;">{p.price} • {p.origin}</div>
+          <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a href={`/shop/${p.slug}`} style="padding:8px 10px; border:1px solid #ddd; border-radius:10px; text-decoration:none;">View</a>
+            <a href={p.storySlug} style="padding:8px 10px; border:1px solid #ddd; border-radius:10px; text-decoration:none;">Story</a>
+          </div>
+        </article>
+      ))}
+    </section>
+  </body>
+</html>
+

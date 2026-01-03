@@ -1,0 +1,50 @@
+---
+const featured = {
+  name: "Tuscan Sea Salt",
+  price: "$12",
+  image: "/images/products/tuscan-salt.jpeg",
+  url: "/shop/tuscan-salt",
+};
+---
+
+<html lang="en">
+  <head>
+    <title>Tuscany — Story</title>
+    <meta name="description" content="A Tuscany trip story with photos and a featured pantry souvenir." />
+  </head>
+  <body style="font-family: system-ui; max-width: 960px; margin: 40px auto; padding: 0 16px;">
+    <header style="display:flex; justify-content:space-between; align-items:center;">
+      <h1>Tuscany</h1>
+      <nav style="display:flex; gap:12px;">
+        <a href="/">Home</a>
+        <a href="/blog">Stories</a>
+        <a href="/shop">Shop</a>
+      </nav>
+    </header>
+
+    <p style="color:#444; line-height:1.6;">
+      Write your Tuscany story here — what towns you visited, what you ate, and where you found the salt.
+    </p>
+
+    <section style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px; margin-top:18px;">
+      <img src="/images/stories/tuscany-1.jpeg" alt="Tuscany photo 1" style="width:100%; border-radius:16px; aspect-ratio: 4/3; object-fit: cover;" />
+      <img src="/images/stories/tuscany-2.jpeg" alt="Tuscany photo 2" style="width:100%; border-radius:16px; aspect-ratio: 4/3; object-fit: cover;" />
+      <img src="/images/stories/tuscany-3.jpeg" alt="Tuscany photo 3" style="width:100%; border-radius:16px; aspect-ratio: 4/3; object-fit: cover;" />
+    </section>
+
+    <hr style="margin:28px 0; border:none; border-top:1px solid #eee;" />
+
+    <section>
+      <h2>From this trip</h2>
+      <div style="display:flex; gap:16px; align-items:center; border:1px solid #eee; border-radius:16px; padding:14px;">
+        <img src={featured.image} alt={featured.name} style="width:140px; border-radius:14px; aspect-ratio: 4/3; object-fit: cover;" />
+        <div>
+          <div style="font-size:18px; font-weight:600;">{featured.name}</div>
+          <div style="color:#444;">{featured.price}</div>
+          <a href={featured.url} style="display:inline-block; margin-top:8px;">View product →</a>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
+
