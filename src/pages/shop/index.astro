@@ -1,14 +1,16 @@
 ---
+const BASE_URL = import.meta.env.BASE_URL;
 const products = [
   {
     name: "Tuscan Sea Salt",
     slug: "tuscan-salt",
     price: "$12",
     origin: "Tuscany, Italy",
-    image: "/images/products/tuscan-salt.jpg",
-    storySlug: "/stories/tuscany",
+    image: "images/products/tuscan-salt.jpeg",
+    storySlug: "stories/tuscany",
   },
 ];
+
 ---
 
 <html lang="en">
@@ -20,9 +22,9 @@ const products = [
     <header style="display:flex; justify-content:space-between; align-items:center;">
       <h1>Shop</h1>
       <nav style="display:flex; gap:12px;">
-        <a href="/">Home</a>
-        <a href="/blog">Stories</a>
-        <a href="/shop">Shop</a>
+        <a href={BASE_URL}>Home</a>
+        <a href={`${BASE_URL}blog`}>Stories</a>
+        <a href={`${BASE_URL}shop`}>Shop</a>
       </nav>
     </header>
 
@@ -33,14 +35,14 @@ const products = [
     <section style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:16px; margin-top:24px;">
       {products.map((p) => (
         <article style="border:1px solid #eee; border-radius:16px; padding:16px;">
-          <img src={p.image} alt={p.name} style="width:100%; border-radius:12px; aspect-ratio: 4/3; object-fit: cover;" />
+          <img src={`${BASE_URL}${p.image}`} alt={p.name} style="width:100%; border-radius:12px; aspect-ratio: 4/3; object-fit: cover;" />
           <h2 style="margin:12px 0 4px 0;">
-            <a href={`/shop/${p.slug}`} style="text-decoration:none;">{p.name}</a>
+            <a href={`${BASE_URL}shop/${p.slug}`} style="text-decoration:none;">{p.name}</a>
           </h2>
           <div style="color:#444;">{p.price} • {p.origin}</div>
           <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
-            <a href={`/shop/${p.slug}`} style="padding:8px 10px; border:1px solid #ddd; border-radius:10px; text-decoration:none;">View</a>
-            <a href={p.storySlug} style="padding:8px 10px; border:1px solid #ddd; border-radius:10px; text-decoration:none;">Story</a>
+            <a href={`${BASE_URL}shop/${p.slug}`} style="padding:8px 10px; border:1px solid #ddd; border-radius:10px; text-decoration:none;">View</a>
+            <a href={`${BASE_URL}${p.storySlug}`} style="padding:8px 10px; border:1px solid #ddd; border-radius:10px; text-decoration:none;">Story</a>
           </div>
         </article>
       ))}
