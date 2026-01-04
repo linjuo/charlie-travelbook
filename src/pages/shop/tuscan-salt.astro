@@ -1,5 +1,6 @@
 ---
-const BASE_URL = import.meta.env.BASE_URL;
+const href = (p) => new URL(p, import.meta.env.BASE_URL).toString();
+const img  = (p) => new URL(p, import.meta.env.BASE_URL).toString();
 const PRODUCT = {
   name: "Tuscan Sea Salt",
   price: "$12",
@@ -20,14 +21,14 @@ const PRODUCT = {
     <header style="display:flex; justify-content:space-between; align-items:center;">
       <h1>{PRODUCT.name}</h1>
       <nav style="display:flex; gap:12px;">
-        <a href={BASE_URL}>Home</a>
-        <a href={`${BASE_URL}blog`}>Stories</a>
-        <a href={`${BASE_URL}shop`}>Shop</a>
+        <a href={href("")}>Home</a>
+        <a href={href("blog")}>Stories</a>
+        <a href={href("shop")}>Shop</a>
       </nav>
     </header>
 
     <section style="display:grid; grid-template-columns: 1.2fr 1fr; gap:24px; margin-top:18px;">
-      <img src={`${BASE_URL}${PRODUCT.image}`} alt={PRODUCT.name} style="width:100%; border-radius:16px; aspect-ratio: 4/3; object-fit: cover;" />
+      <img src={img(PRODUCT.image)} alt={PRODUCT.name} style="width:100%; border-radius:16px; aspect-ratio: 4/3; object-fit: cover;" />
 
       <div style="border:1px solid #eee; border-radius:16px; padding:16px;">
         <div style="color:#444;">{PRODUCT.origin}</div>
@@ -47,7 +48,7 @@ const PRODUCT = {
         </a>
 
         <div style="margin-top:12px;">
-          <a href={`${BASE_URL}${PRODUCT.storyUrl}`}>Read the Tuscany story →</a>
+          <a href={href(PRODUCT.storyUrl)}>Read the Tuscany story →</a>
         </div>
 
         <div style="margin-top:16px; color:#666; font-size:14px;">
