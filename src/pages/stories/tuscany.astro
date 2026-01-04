@@ -1,7 +1,8 @@
 ---
 const base = new URL(import.meta.env.BASE_URL, "https://example.com");
-const href = (p) => new URL(p, base).pathname;
-const img  = (p) => new URL(p, base).pathname;
+const join = (p) => new URL(p, base).pathname;
+const href = (p) => join(p === "" ? "." : p);
+const img  = (p) => join(p);
 
 const featured = {
   name: "Tuscan Sea Salt",
