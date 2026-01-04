@@ -1,5 +1,7 @@
 ---
-const BASE_URL = import.meta.env.BASE_URL;
+const href = (p) => new URL(p, import.meta.env.BASE_URL).toString();
+const img = (p) => new URL(p, import.meta.env.BASE_URL).toString();
+
 const featured = {
   name: "Tuscan Sea Salt",
   price: "$12",
@@ -17,9 +19,9 @@ const featured = {
     <header style="display:flex; justify-content:space-between; align-items:center;">
       <h1>Tuscany</h1>
       <nav style="display:flex; gap:12px;">
-        <a href="/">Home</a>
-        <a href="/blog">Stories</a>
-        <a href="/shop">Shop</a>
+        <a href={href("")}>Home</a>
+        <a href={href("blog")}>Stories</a>
+        <a href={href("shop")}>Shop</a>
       </nav>
     </header>
 
@@ -28,9 +30,9 @@ const featured = {
     </p>
 
     <section style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px; margin-top:18px;">
-      <img src={`${BASE_URL}/images/stories/tuscany-1.jpg`} alt="Tuscany photo 1" style="width:100%; border-radius:16px; aspect-ratio: 4/3; object-fit: cover;" />
-      <img src={`${BASE_URL}/images/stories/tuscany-2.jpg`} alt="Tuscany photo 2" style="width:100%; border-radius:16px; aspect-ratio: 4/3; object-fit: cover;" />
-      <img src={`${BASE_URL}/images/stories/tuscany-3.jpg`} alt="Tuscany photo 3" style="width:100%; border-radius:16px; aspect-ratio: 4/3; object-fit: cover;" />
+      <img src={img("images/stories/tuscany-1.jpg")} alt="Tuscany photo 1" style="width:100%; border-radius:16px; aspect-ratio: 4/3; object-fit: cover;" />
+      <img src={img("images/stories/tuscany-2.jpg")} alt="Tuscany photo 2" style="width:100%; border-radius:16px; aspect-ratio: 4/3; object-fit: cover;" />
+      <img src={img("images/stories/tuscany-3.jpg")} alt="Tuscany photo 3" style="width:100%; border-radius:16px; aspect-ratio: 4/3; object-fit: cover;" />
     </section>
 
     <hr style="margin:28px 0; border:none; border-top:1px solid #eee;" />
@@ -38,14 +40,13 @@ const featured = {
     <section>
       <h2>From this trip</h2>
       <div style="display:flex; gap:16px; align-items:center; border:1px solid #eee; border-radius:16px; padding:14px;">
-        <img src={`${BASE_URL}${featured.image}`} alt={featured.name} style="width:140px; border-radius:14px; aspect-ratio: 4/3; object-fit: cover;" />
+        <img src={img(featured.image)} alt={featured.name} style="width:140px; border-radius:14px; aspect-ratio: 4/3; object-fit: cover;" />
         <div>
           <div style="font-size:18px; font-weight:600;">{featured.name}</div>
           <div style="color:#444;">{featured.price}</div>
-          <a href={`${BASE_URL}${featured.url}`} style="display:inline-block; margin-top:8px;">View product →</a>
+          <a href={href(featured.url)} style="display:inline-block; margin-top:8px;">View product →</a>
         </div>
       </div>
     </section>
   </body>
 </html>
-
