@@ -1,0 +1,61 @@
+---
+const BASE =
+  import.meta.env.BASE_URL.endsWith("/")
+    ? import.meta.env.BASE_URL
+    : `${import.meta.env.BASE_URL}/`;
+
+const withBase = (p) => `${BASE}${String(p).replace(/^\/+/, "")}`;
+
+// Add stories inside this collection
+const trips = [
+  // Example placeholder:
+  // {
+  //   title: "Lake Bled & the Alps",
+  //   subtitle: "Views, hikes, and our favorite café stop.",
+  //   image: "images/stories/northern-italy-1.jpg",
+  //   url: "stories/europe/northern-italy/lake-bled",
+  // },
+];
+---
+
+<html lang="en">
+  <head>
+    <title>Northern Italy — 7 days</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body style="font-family: system-ui; max-width: 1000px; margin: 40px auto; padding: 0 16px;">
+    <header style="display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <h1 style="margin:0;">Northern Italy — 7 days</h1>
+        <div style="color:#555; margin-top:4px;">Stories in this itinerary.</div>
+      </div>
+
+      <nav style="display:flex; gap:12px;">
+        <a href={withBase("")}>Home</a>
+        <a href={withBase("stories")}>Stories</a>
+        <a href={withBase("stories/europe")}>Europe</a>
+      </nav>
+    </header>
+
+    {trips.length === 0 ? (
+      <p style="margin-top:18px; color:#444; line-height:1.6;">
+        No stories here yet. Add your first trip story under
+        <code style="background:#f6f6f6; padding:2px 6px; border-radius:8px;">src/pages/stories/europe/northern-italy/</code>
+        and then list it in this page.
+      </p>
+    ) : (
+      <section style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:16px; margin-top:18px;">
+        {trips.map((t) => (
+          <a href={withBase(t.url)} style="text-decoration:none; color:inherit; border:1px solid #eee; border-radius:18px; overflow:hidden;">
+            <img src={withBase(t.image)} alt={t.title} style="width:100%; aspect-ratio:16/10; object-fit:cover;" />
+            <div style="padding:14px;">
+              <div style="font-size:20px; font-weight:700;">{t.title}</div>
+              <div style="margin-top:6px; color:#555; line-height:1.5;">{t.subtitle}</div>
+            </div>
+          </a>
+        ))}
+      </section>
+    )}
+  </body>
+</html>

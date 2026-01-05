@@ -1,0 +1,66 @@
+---
+const BASE =
+  import.meta.env.BASE_URL.endsWith("/")
+    ? import.meta.env.BASE_URL
+    : `${import.meta.env.BASE_URL}/`;
+
+const withBase = (p) => `${BASE}${String(p).replace(/^\/+/, "")}`;
+
+const continents = [
+  {
+    title: "America",
+    subtitle: "Road trips, parks, cities, and food finds.",
+    image: "images/hero/america.jpg",
+    url: "stories/america",
+  },
+  {
+    title: "Europe",
+    subtitle: "Italy loops, coastal towns, markets, cafés, and souvenirs.",
+    image: "images/hero/europe.jpg",
+    url: "stories/europe",
+  },
+  {
+    title: "Asia",
+    subtitle: "Street food, night markets, temples, and pantry treasures.",
+    image: "images/hero/asia.jpg",
+    url: "stories/asia",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <title>Stories</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body style="font-family: system-ui; max-width: 1000px; margin: 40px auto; padding: 0 16px;">
+    <header style="display:flex; justify-content:space-between; align-items:center;">
+      <h1>Stories</h1>
+      <nav style="display:flex; gap:12px;">
+        <a href={withBase("")}>Home</a>
+        <a href={withBase("stories")}>Stories</a>
+        <a href={withBase("shop")}>Shop</a>
+      </nav>
+    </header>
+
+    <p style="color:#444; line-height:1.6; margin-top:10px;">
+      Choose a region to browse trips and stories.
+    </p>
+
+    <section style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:16px; margin-top:18px;">
+      {continents.map((c) => (
+        <a
+          href={withBase(c.url)}
+          style="text-decoration:none; color:inherit; border:1px solid #eee; border-radius:18px; overflow:hidden;"
+        >
+          <img src={withBase(c.image)} alt={c.title} style="width:100%; aspect-ratio:16/10; object-fit:cover;" />
+          <div style="padding:14px;">
+            <div style="font-size:20px; font-weight:700;">{c.title}</div>
+            <div style="margin-top:6px; color:#555; line-height:1.5;">{c.subtitle}</div>
+          </div>
+        </a>
+      ))}
+    </section>
+  </body>
+</html>
